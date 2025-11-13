@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,11 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "react-router-dom";
-import { Plus, Trash2, Edit, Eye, Home, Image as ImageIcon, Check, X } from "lucide-react";
+import { Plus, Trash2, Edit, Eye, Home, Image as ImageIcon, Check, X, Bold, Italic, List, Link as LinkIcon } from "lucide-react";
 import { toast } from "sonner";
-import 'react-quill/dist/quill.snow.css';
-
-const ReactQuill = lazy(() => import('react-quill'));
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
