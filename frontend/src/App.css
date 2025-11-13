@@ -1,34 +1,93 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f8f9fa;
+  color: #1a1a1a;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.App {
+  min-height: 100vh;
 }
 
-.App-link {
-    color: #61dafb;
+/* Smooth animations */
+button, a, input, textarea {
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s, opacity 0.2s;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+button:hover, a:hover {
+  transform: translateY(-1px);
+}
+
+button:active, a:active {
+  transform: translateY(0);
+}
+
+/* RDC colors - Bleu, Jaune, Rouge */
+:root {
+  --color-primary: #007FFF;
+  --color-secondary: #FFD700;
+  --color-accent: #CE1126;
+  --color-background: #f8f9fa;
+  --color-text: #1a1a1a;
+  --color-text-light: #6c757d;
+  --color-border: #dee2e6;
+}
+
+/* Quill editor styling */
+.ql-container {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+}
+
+.ql-editor {
+  min-height: 300px;
+  background: white;
+}
+
+.ql-toolbar {
+  background: white;
+  border-radius: 8px 8px 0 0;
+}
+
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.article-content h1 {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.article-content h2 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.article-content p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.article-content ul,
+.article-content ol {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.article-content blockquote {
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: var(--color-text-light);
 }
