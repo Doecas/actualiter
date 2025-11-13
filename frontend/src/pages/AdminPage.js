@@ -345,16 +345,74 @@ export default function AdminPage() {
                       )}
                     </div>
                     <div>
-                      <Label>Contenu *</Label>
-                      <Suspense fallback={<div className="h-64 bg-gray-100 rounded flex items-center justify-center">Chargement de l'éditeur...</div>}>
-                        <ReactQuill
-                          theme="snow"
+                      <Label>Contenu * (HTML autorisé)</Label>
+                      <div className="border rounded-lg overflow-hidden">
+                        <div className="bg-gray-50 border-b p-2 flex gap-2">
+                          <Button 
+                            type="button" 
+                            variant="outline" 
+                            size="sm" 
+                            onClick={() => insertFormatting('bold')}
+                            title="Gras"
+                          >
+                            <Bold className="w-4 h-4" />
+                          </Button>
+                          <Button 
+                            type="button" 
+                            variant="outline" 
+                            size="sm" 
+                            onClick={() => insertFormatting('italic')}
+                            title="Italique"
+                          >
+                            <Italic className="w-4 h-4" />
+                          </Button>
+                          <Button 
+                            type="button" 
+                            variant="outline" 
+                            size="sm" 
+                            onClick={() => insertFormatting('h2')}
+                            title="Titre"
+                          >
+                            H2
+                          </Button>
+                          <Button 
+                            type="button" 
+                            variant="outline" 
+                            size="sm" 
+                            onClick={() => insertFormatting('ul')}
+                            title="Liste"
+                          >
+                            <List className="w-4 h-4" />
+                          </Button>
+                          <Button 
+                            type="button" 
+                            variant="outline" 
+                            size="sm" 
+                            onClick={() => insertFormatting('link')}
+                            title="Lien"
+                          >
+                            <LinkIcon className="w-4 h-4" />
+                          </Button>
+                          <Button 
+                            type="button" 
+                            variant="outline" 
+                            size="sm" 
+                            onClick={() => insertFormatting('p')}
+                            title="Paragraphe"
+                          >
+                            P
+                          </Button>
+                        </div>
+                        <Textarea
+                          id="content-textarea"
+                          data-testid="article-content-textarea"
                           value={articleForm.content}
-                          onChange={(value) => setArticleForm({ ...articleForm, content: value })}
-                          modules={quillModules}
-                          className="bg-white"
+                          onChange={(e) => setArticleForm({ ...articleForm, content: e.target.value })}
+                          placeholder="Contenu de l'article (HTML autorisé)"
+                          rows={12}
+                          className="border-0 rounded-none"
                         />
-                      </Suspense>
+                      </div>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Switch
