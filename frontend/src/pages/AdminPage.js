@@ -322,13 +322,15 @@ export default function AdminPage() {
                     </div>
                     <div>
                       <Label>Contenu *</Label>
-                      <ReactQuill
-                        theme="snow"
-                        value={articleForm.content}
-                        onChange={(value) => setArticleForm({ ...articleForm, content: value })}
-                        modules={quillModules}
-                        className="bg-white"
-                      />
+                      <Suspense fallback={<div className="h-64 bg-gray-100 rounded flex items-center justify-center">Chargement de l'éditeur...</div>}>
+                        <ReactQuill
+                          theme="snow"
+                          value={articleForm.content}
+                          onChange={(value) => setArticleForm({ ...articleForm, content: value })}
+                          modules={quillModules}
+                          className="bg-white"
+                        />
+                      </Suspense>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Switch
