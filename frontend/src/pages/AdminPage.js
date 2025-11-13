@@ -203,15 +203,42 @@ export default function AdminPage() {
     }
   };
 
-  const quillModules = {
-    toolbar: [
-      [{ 'header': [1, 2, 3, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      [{ 'align': [] }],
-      ['link', 'blockquote'],
-      ['clean']
-    ]
+  const insertFormatting = (tag) => {
+    const textarea = document.getElementById('content-textarea');
+    if (!textarea) return;
+    
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = articleForm.content.substring(start, end);
+    
+    let newText = '';
+    switch(tag) {
+      case 'bold':
+        newText = `<strong>${selectedText || 'texte en gras'}</strong>`;
+        break;
+      case 'italic':
+        newText = `<em>${selectedText || 'texte en italique'}</em>`;
+        break;
+      case 'h2':
+        newText = `<h2>${selectedText || 'Titre'}</h2>`;
+        break;
+      case 'ul':
+        newText = `<ul><li>${selectedText || 'élément de liste'}</li></ul>`;
+        break;
+      case 'link':
+        const url = prompt('URL du lien:');
+        if (url) newText = `<a href="${url}">${selectedText || 'lien'}</a>`;
+        break;
+      case 'p':
+        newText = `<p>${selectedText || 'paragraphe'}</p>`;
+        break;
+    }
+    
+    if (newText) {
+      const before = articleForm.content.substring(0, start);
+      const after = articleForm.content.substring(end);
+      setArticleForm({ ...articleForm, content: before + newText + after });
+    }
   };
 
   return (
